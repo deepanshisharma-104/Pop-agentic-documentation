@@ -22,7 +22,6 @@ Molecules are composed UI components built from atoms. They carry layout, state,
 | 12 | ODP Card | `↪️ ❖ Card 🚧` |
 
 ---
----
 
 # 1. Status Bar — POP Design System
 
@@ -58,7 +57,6 @@ Molecules are composed UI components built from atoms. They carry layout, state,
 | **iOS** | iPhone / iOS | `*-IOS onblack.svg` (Light) or `*-IOS onwhite.svg` (Transparent / Dark) |
 | **android** | Android devices | `*-Android onblack.svg` (Light) or `*-Android onwhite.svg` (Transparent / Dark) |
 
----
 
 ## Icon Assets by Platform & Theme
 
