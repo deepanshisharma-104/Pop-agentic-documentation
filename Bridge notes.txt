@@ -1,0 +1,16 @@
+Button variant table (this will include the gradients)
+Gradient wont be mapped 
+
+Tokens missing in DS
+1. SurfaceColor.BrandPrimaryLight      // #E0E0E0
+2. SurfaceColor.BrandPrimary05Percent  // #141414
+3. SurfaceColor.TertiaryFromTokens     // #2A2A2A
+4. SurfaceColor.SecondaryFromTokens    // #1E1E1E
+
+TextColor.PrimaryFromTokens        // #FFFFFF — from Figma tokens
+TextColor.PrimaryTransparent60     // #99E6E6E6 (dunno where this color is used)
+TextColor.PrimaryTransparent10     // #1AFFFFFF
+TextColor.PrimaryInactive          // #7F7F7F
+TextColor.SecondaryFromTokens      // #A0A0A0
+TextColor.TertiaryFromTokens       // #909090
+

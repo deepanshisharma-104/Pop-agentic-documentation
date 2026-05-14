@@ -43,16 +43,16 @@
 
 | Token | Hex |
 |---|---|
-| Success/Sucess-1000 | `#054C22` |
-| Success/Sucess-900 | `#07642D` |
-| Success/Sucess-800 | `#09813A` |
-| Success/Sucess-700 | `#0CA64A` |
-| Success/Sucess-600 | `#0DB651` |
-| Success/Sucess-500 | `#3DC574` |
-| Success/Sucess-400 | `#5DCE8A` |
-| Success/Sucess-300 | `#90DDAF` |
-| Success/Sucess-200 | `#B4E8C9` |
-| Success/Sucess-100 | `#E7F8EE` |
+| Success/Success-1000 | `#054C22` |
+| Success/Success-900 | `#07642D` |
+| Success/Success-800 | `#09813A` |
+| Success/Success-700 | `#0CA64A` |
+| Success/Success-600 | `#0DB651` |
+| Success/Success-500 | `#3DC574` |
+| Success/Success-400 | `#5DCE8A` |
+| Success/Success-300 | `#90DDAF` |
+| Success/Success-200 | `#B4E8C9` |
+| Success/Success-100 | `#E7F8EE` |
 
 ### Destructive
 
