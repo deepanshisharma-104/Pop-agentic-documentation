@@ -3,8 +3,6 @@
 ## Objective
 Create a comprehensive bridge documentation file that maps the **POP Design System Agentic Documentation** (design specifications in Figma) with the **POP Codebase Agentic Documentation** (Kotlin/Jetpack Compose implementation). This bridge enables seamless design-to-code translation workflows.
 
----
-
 ## Input Files to Reference
 
 ### Design System Files (Input)
@@ -22,8 +20,6 @@ You will receive or reference these 10 design system documentation files:
 
 ### Codebase File (Input)
 1. **POP_DESIGN_SYSTEM_DOCUMENTATION.md** — Master Kotlin/Jetpack Compose implementation reference
-
----
 
 ## Output Requirements
 
@@ -75,40 +71,46 @@ Include mappings for:
 Columns:
 - Design System Token (Spacing/0 through Spacing/120)
 - Value(Design system token value) (px)
-- Codebase variable name
+- Codebase variable name 
+- Codebase variable value
 - Description (usecase)
 - Codebase Implementation (PopSpacing.kt)
 - Code Pattern
 
 
-Include all 21 spacing values
+Include all spacing values
 
 ##### C. RADIUS TOKENS Mapping Table
 Columns:
 - Design System Token (Radius/0 through Radius/16)
-- Value (px)
-- Usage Hint
-- Codebase Implementation
+- Value(Design system token value) (px)
+- Codebase variable name 
+- Codebase variable value
+- Description (usecase)
+- Codebase Implementation (PopSpacing.kt)
 - Code Pattern
 
 ##### D. STROKE/BORDER TOKENS Mapping Table
 Columns:
 - Design System Token (Stroke/Hairline, Thin, Medium)
-- Value (px)
-- Description
-- Codebase Implementation
+- Value(Design system token value) (px)
+- Codebase variable name 
+- Codebase variable value
+- Description (usecase)
+- Codebase Implementation (PopSpacing.kt)
 - Code Pattern
 
 ##### E. TYPOGRAPHY/TYPESCALE Mapping Table
 Columns:
 - Design System File
 - Style Category (Display, Heading, Paragraph, Label, Link)
-- Style Name
-- Font Size
-- Font Weight
-- Line Height
-- Letter Spacing
-- Codebase File
+- Style Name ( in both DS and codebase )
+- Font Size ( in both DS and codebase )
+- Font Weight ( in both DS and codebase )
+- Line Height ( in both DS and codebase )
+- Letter Spacing ( in both DS and codebase )
+- Codebase File ( in both DS and codebase )
+- Description (usecase)
 - Kotlin Implementation
 - Code Pattern
 
@@ -118,10 +120,10 @@ Include all text styles from type-scale.md
 Columns:
 - Icon Category (Outline, Filled, Illustration, Logos, UPI App Logos, Status Bar)
 - Export Format (SVG/PNG)
-- Export Path
-- Description
-- Codebase File
-- Implementation (IconName variants, IconStyle enum)
+- Export Path (figma)
+- Codebase File (kotlin file in codebase)
+- Description (usecase)
+- Implementation (IconName variants, IconStyle enum)(in coadebase)
 - Code Pattern
 
 Include mapping for Icon Wrapper sizing system (Small, Medium, Large, XLarge)
@@ -130,7 +132,7 @@ Include mapping for Icon Wrapper sizing system (Small, Medium, Large, XLarge)
 Columns:
 - Effect Token
 - Type (Shadow, Glow, Blur)
-- Description
+- Description 
 - Usage Context
 - Codebase File
 - Implementation
@@ -140,10 +142,10 @@ Columns:
 Columns:
 - Component (from atoms.md)
 - Type
-- Description
+- Description (usecase)
 - Figma Page
 - Codebase File
-- Implementation Name
+- Implementation 
 - Code Pattern
 
 Components to map:
@@ -157,10 +159,10 @@ Columns:
 - Component (from atoms2.md)
 - Type
 - Variants
-- Description
-- Figma Page
-- Codebase File
-- Implementation Name
+- Description (usecase)
+- Figma Page 
+- Codebase File Name
+- Code Implementation (of each atoms)
 - Key Properties
 
 Components to map:
@@ -171,11 +173,11 @@ Components to map:
 Columns:
 - Component (from molecules.md)
 - Count
-- Description
+- Description (usecase)
 - Key Properties/Variants
 - Figma Page
-- Codebase File
-- Implementation Name
+- Codebase File Name
+- code Implementation (of each molecule) 
 - Code Pattern
 
 Components to map (12 total):
@@ -199,8 +201,8 @@ Columns:
 - Description
 - Key Properties/Variants
 - Figma Page
-- Codebase File
-- Implementation Name
+- Codebase File name
+- code Implementation (of each molecule)
 - Internal Building Blocks
 
 Component groups to map (10 total):
@@ -220,11 +222,11 @@ Component groups to map (10 total):
 Columns:
 - Component Group (from organisms.md)
 - Count
-- Description
+- Description (usecase)
 - Key Properties/Variants
 - Figma Page
-- Codebase File
-- Implementation Name
+- Codebase File Name
+- code Implementation (of each component)
 - Internal Building Blocks
 
 Component groups to map (10 total):
@@ -244,7 +246,7 @@ Columns:
 - Product Context (Payments, Shop, Recharges, Account Management, Profile QR)
 - Pattern Type
 - Count
-- Description
+- Description(usecase)
 - Key Composed Components
 - Figma Page
 - Codebase Implementation Pattern
@@ -289,8 +291,8 @@ Create a visual tree showing:
 Example format:
 ```
 Design System (Figma)
-├── colors.md                         ↔ PopColor.kt, Color.kt, PopGradient.kt
-├── spacing-radius-strokes-effects.md ↔ PopSpacing.kt
+├── colors.md                         ↔ PopColor.kt, Color.kt, PopGradient.kt ↔ Usecase 
+├── spacing-radius-strokes-effects.md ↔ PopSpacing.kt ↔ Usecase 
 ...
 ```
 
@@ -302,7 +304,6 @@ Include section with:
 - Variant Consistency checks
 - Documentation Update process
 
----
 
 ## Detailed Mapping Instructions
 
@@ -311,11 +312,10 @@ Include section with:
 1. **Extract from Design System File:**
    - Token/component name from design
    - Description of what it does
-   - Hierarchy/category
    - All variants or configurations
 
 2. **Match to Codebase:**
-   - Find corresponding Kotlin class/object/enum
+   - Find corresponding Kotlin class/object/enum  , also how any tokens is used in codebase as variable 
    - Identify file location (PopColor.kt, PopSpacing.kt, etc.)
    - Find the exact property/function name
    - Determine which composable uses it
@@ -341,7 +341,6 @@ Include section with:
 4. **SHOULD include internal building blocks** (prefixed with `.` in design)
 5. **SHOULD note 1:Many relationships** where one design token maps to multiple implementations
 
----
 
 ## Quality Standards
 
@@ -352,7 +351,6 @@ Include section with:
 ✓ **Practical:** Include real Kotlin/Compose code patterns  
 ✓ **Consistency:** Use consistent naming and formatting throughout  
 
----
 
 ## Output Format
 
@@ -363,15 +361,12 @@ Include section with:
 - **Links:** Reference related sections with markdown headers
 - **Length:** Comprehensive but organized (avoid single overwhelming wall of text)
 
----
-
-## Example Row from Color Tokens Table
+## Example Row from Color Tokens Table (use column as above defined names)
 
 | Design System File | Design Token | Description | Codebase File | Implementation | Code Pattern |
 |---|---|---|---|---|---|
 | colors.md | Greys/Grey-800 | Primary border color for high-contrast separators on dark surfaces | PopColor.kt | `PopColor.grey800` | `border(color = PopColor.grey800, width = 1.dp)` |
 
----
 
 ## Example Row from Button Molecules Table
 
@@ -379,10 +374,8 @@ Include section with:
 |---|---|---|---|---|---|---|---|
 | Button | 1 | Primary interactive element with multiple variants and states | Variant (primary, secondary, tertiary, outline, ghost, danger), State (default, loading, disabled), Size (large, medium, small) | ↪️ ❖ Button ✅ | PopButtonV2.kt | `PopButtonV2` composable | `PopButtonV2(text = "Click Me", variant = ButtonVariant.Primary, onClick = {...})` |
 
----
 
 ## End of Master Prompt
 
-**Generated bridge file should be named:** `bridge_masterprompt.md`  
-**Target audience:** Developers, design engineers, AI assistants doing design-to-code work  
+**Generated bridge file should be named:** `bridgefile.md`   
 **Primary use:** Reference document for translating design system specifications to Kotlin/Jetpack Compose code
