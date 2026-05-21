@@ -194,4 +194,24 @@
 | info-square (svg) | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/info-square.svg | Square info (SVG) |
 | alert-circle (svg) | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/alert-circle.svg | Circle alert (SVG) |
 | credit-card-02 (svg) | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/credit-card-02.svg | Credit card (SVG) |
-| check-verified-02 (svg) | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/check-verified-02.svg | Verified / trusted (SVG) |
+| check-verified-02 (svg) | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/check-verified-02.svg | Verified / 
+trusted (SVG) |
+
+**`Brand logo`**
+
+| Logo Name | Logo URL | Description |
+|---|---|---|
+| SBI UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12SBI.png | State Bank of India UPI logo |
+| AU Finance UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12AUfinance.png | AU Small Finance Bank UPI logo |
+| Federal UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12Federal.png | Federal Bank UPI logo |
+| BOB UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12BOB.png | Bank of Baroda UPI logo |
+| ICICI UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12ICICI.png | ICICI Bank UPI logo |
+| Karnataka Bank UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12KarnatakBank.png | Karnataka Bank UPI logo |
+| Axis UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12Axis.png | Axis Bank UPI logo |
+| South Indian Bank UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12Southindianbank.png | South Indian Bank UPI logo |
+| Citi UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12Citi.png | Citibank UPI logo |
+| PNB UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12Pnb.png | Punjab National Bank UPI logo |
+| Kotak UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12Kotak.png | Kotak Mahindra Bank UPI logo |
+| Yes Bank UPI logo | https://nrchgsvmkvqjhkqhsdqg.supabase.co/storage/v1/object/public/POPIcons/U12Yesbank.png | Yes Bank UPI logo |
+
+
