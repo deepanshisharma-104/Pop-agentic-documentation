@@ -1684,6 +1684,104 @@ Quantity steppers allow users to increment or decrement a numeric value — used
 ---
 ---
 
+# 11. Keypad — POP Design System
+
+The Keypad is a custom numeric input surface used when the system keyboard is suppressed — primarily for amount entry (UPI, payments) and PIN/OTP flows that use an external keypad. It is composed of a 4×3 grid of `Keypad - Unit` keys. **Never use `Keypad - Unit` directly** — always place the assembled `Keypad` component.
+
+---
+
+## 11a. Keypad Unit (Building Block)
+
+**Component name:** `Keypad - Unit`
+**Figma page:** `↪️ ❖ Keypad`
+**Node ID:** `6424:9200`
+
+> ⚠️ **Never place this component directly on a screen.** It is the internal building block of the `Keypad` component. Use `Keypad` (section 11b) instead.
+
+### Properties
+
+| Property | Type | Default | Options | Notes |
+|---|---|---|---|---|
+| `Bg` | Boolean | True | True, False | `True` = standard key background (`SurfaceColor.Secondary-60%`); `False` = muted background (`SurfaceColor.Primary-50%`) used for the decimal and backspace keys |
+| `Number` | Boolean | True | True, False | Shows the digit label. `False` for decimal and backspace keys |
+| `Decimal` | Boolean | False | True, False | Shows the `.` dot icon in place of a number. Only one key in the keypad uses this |
+| `Backspace` | Boolean | False | True, False | Shows the backspace / delete icon. Only one key in the keypad uses this |
+| `Is active` | Boolean | False | True, False | Pressed / touched state |
+
+### States
+
+| `Bg` | `Is active` | Background | When |
+|---|---|---|---|
+| True | False | `SurfaceColor.Secondary` at 60% opacity — `rgba(31,31,31,0.6)` | Number keys, idle |
+| True | True | `SurfaceColor.Secondary` — `#1f1f1f` | Number keys, pressed |
+| False | False | `SurfaceColor.Primary` at 50% opacity — `rgba(13,13,13,0.5)` | Decimal and backspace keys, idle |
+| False | True | `SurfaceColor.Secondary` — `#1f1f1f` | Decimal and backspace keys, pressed |
+
+### Dimensions
+
+| Token | Value |
+|---|---|
+| Key height | 56dp |
+| Key width | Equal flex — fills 1/3 of keypad width |
+| Corner radius | 12dp (`PopRadius.12`) |
+| Number font | Figtree SemiBold, 20sp, lineHeight 26, `TextColor.Primary` |
+| Decimal icon size | 22×22dp |
+| Backspace icon size | 35.75×32dp |
+
+---
+
+## 11b. Keypad
+
+**Component name:** `Keypad`
+**Figma page:** `↪️ ❖ Keypad`
+**Node ID:** `6424:9514`
+
+
+### Layout
+
+The Keypad is a fixed 4-row × 3-column grid:
+
+| Row | Col 1 | Col 2 | Col 3 |
+|---|---|---|---|
+| 1 | 1 | 2 | 3 |
+| 2 | 4 | 5 | 6 |
+| 3 | 7 | 8 | 9 |
+| 4 | `.` *(or empty)* | 0 | ⌫ |
+
+- The `.` key and `⌫` key always use `Bg=False` (muted background).
+- All number keys (1–9, 0) use `Bg=True` (standard background).
+
+### Spacing & Container
+
+| Token | Value |
+|---|---|
+| Background | `SurfaceColor.Primary` — `#0d0d0d` |
+| Gap between keys (horizontal + vertical) | 4dp |
+| Bottom padding | 40dp |
+| Top padding | 0dp |
+| Alignment | Keys fill full width equally (`weight(1f)` per key) |
+
+### Use Cases
+
+| Use Case | `Allow decimal` | Notes |
+|---|---|---|
+| Amount / UPI payment entry | True | Decimal needed for paise input (e.g. `1500.50`) |
+| PIN entry | False | Integers only — decimal key hidden |
+| OTP entry via custom keypad | False | Digits only |
+
+---
+
+## Rules — Keypad
+
+- **Never use `Keypad - Unit` directly** — always use the assembled `Keypad` component.
+- **Always pair `Keypad` with `UnderlineNakedLargeConfig(useCustomKeypad = true)`** on the input field — this suppresses the system keyboard and routes input through the keypad.
+- **Set `Allow decimal = False`** for PIN and OTP flows — decimal input is meaningless in those contexts.
+- **Never reconstruct the key grid manually** — do not place individual `Keypad - Unit` components in a `Row`/`Column`; use the `Keypad` component as-is.
+- The 40dp bottom padding is intentional — it provides safe-area clearance above the home indicator on modern devices. Do not remove it.
+
+---
+---
+
 ## General Rules — Molecules 2
 
 - **Never use internal (`.` prefix) components directly in screens.** They are building blocks — always use their parent stack or organism instead.

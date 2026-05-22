@@ -1,7 +1,7 @@
 # Master Prompt: Inside "bridge_doc" folder add a file named "chip_bridgefile.md"
 
 ## Objective
-Create a comprehensive bridge documentation file that maps the **POP Design System Agentic Documentation - "molecules.md"** (Chip and Chip Stack sections — 8a and 8b only) with the **POP Codebase Agentic Documentation - POP Codebase/ds_components/PopChip.kt, POP Codebase/ds_components/PopChipStack.kt, POP Codebase/models/PopChipConfig.kt** (Kotlin/Jetpack Compose implementation). This bridge enables seamless design-to-code translation workflows.
+Create a comprehensive bridge documentation file that maps the **POP Design System Agentic Documentation - "molecules.md"** (Chip and Chip Stack sections — 8a and 8b only) with the **POP Codebase Agentic Documentation - POP Codebase/ds_components/PopChip.kt, POP Codebase/ds_components/PopChipStack.kt, POP Codebase/models/PopChipConfig.kt , POP Codebase/models/PopChipConfig.kt** (Kotlin/Jetpack Compose implementation). This bridge enables seamless design-to-code translation workflows.
 
 ---
 
@@ -13,85 +13,14 @@ Map each design `State` value to its `PopChipVariant` and `PopChipMode` combinat
 
 Columns:
 - Design System File (e.g., molecules.md)
-- Design `State` Value (e.g., `Toggle`, `Cross`, `Dropdown`, `Switch`)
-- Codebase `PopChipVariant` (e.g., `PopChipVariant.Basic`)
-- Codebase `PopChipMode` (e.g., `PopChipMode.Toggleable`)
-- Codebase File Name
-- Notes
+- Design property Name (e.g., [State:`Toggle`, `Cross`, `Dropdown`, `Switch`],[is active:true/false], [is diabled:true/false], [`L-icon:false/true`] )
+- Codebase `PopChipVariant` (e.g.,`config.variant == PopChipVariant.WithDropdown` ,`internalActiveState = config.isActive` ,`config.mode = config.enabled` , ` config.leadingIcon`)
+- Codebase File Name (`PopChip.kt`, `PopChipConfig.kt` )
 - Code Pattern
-
-Include mappings for:
-- `State=Toggle` → `PopChipVariant.Basic` + `PopChipMode.Toggleable` — simple on/off chip; no trailing indicator; active border appears when `isActive = true`
-- `State=Cross` → `PopChipVariant.WithClose` + `PopChipMode.Toggleable` — shows dismiss (✕) icon when active; `onCloseClick` removes the chip or deselects; active border appears when `isActive = true`
-- `State=Dropdown` → `PopChipVariant.WithDropdown` + `PopChipMode.Static` or `Toggleable` — trailing chevron icon; click handled via `onClick`; use `PopChipMode.Static` when tapping opens a picker (chip itself does not toggle), `Toggleable` when the chip also selects
-- `State=Switch` → ⚠️ No direct `PopChipVariant` equivalent — `PopChipVariant` has `Basic`, `WithClose`, `WithDropdown` only; document the gap and recommended workaround
+### Note : Extract icon from this file ('bridge_doc/icon_files.md`)
 
 Note: `PopChipMode.Static` always shows inactive UI regardless of `isActive` — use when the chip is display-only or when selection is managed externally. `PopChipMode.Toggleable` internally tracks and toggles `isActive` on each click.
 
----
-
-##### B. Chip State Flags Mapping [molecules.md → PopChipConfig]
-
-Map `Is active` and `Is disabled` design properties to their config fields.
-
-Columns:
-- Design System File
-- Design Property (e.g., `Is active`, `Is disabled`)
-- Codebase Config Field (e.g., `PopChipConfig.isActive`, `PopChipConfig.enabled`)
-- Default Value
-- Codebase File Name
-- Notes
-- Code Pattern
-
-Include mappings for:
-- `Is active=True` → `isActive = true` — only meaningful in `PopChipMode.Toggleable`; shows animated border (`BorderColor.PrimaryInvert`) when active and enabled
-- `Is active=False` → `isActive = false` (default)
-- `Is disabled=True` → `enabled = false` — applies `SurfaceColor.SecondaryDisabled` background, `TextColor.Disabled`, `IconColor.Disabled`; click interactions removed
-- `Is disabled=False` → `enabled = true` (default)
-
-Note: When `Is disabled=True`, active border never shows regardless of `isActive` — `shouldShowActiveBorder = effectiveActiveState && config.enabled`. Disabled always overrides active styling.
-
----
-
-##### C. Chip Leading Icon Mapping [molecules.md → PopChipConfig]
-
-Columns:
-- Design System File
-- Design Property (`L-Icon`)
-- Design Value (True / False)
-- Codebase Config Field (`PopChipConfig.leadingIcon: PopIconConfig?`)
-- Codebase File Name
-- Notes
-- Code Pattern
-
-Include mappings for:
-- `L-Icon=True` → `leadingIcon = PopIconConfig(iconName = Icons.*, style = IconStyle.Outline)` — icon is always 16dp (`IconSize.Small`); tint follows `enabled` state (`IconColor.Primary` / `IconColor.Disabled`)
-- `L-Icon=False` → `leadingIcon = null` (default) — no leading icon rendered
-
----
-
-## B: Chip Size Mapping Table
-
-##### D. Chip Size Mapping [molecules.md → PopChip.kt / PopChipStack.kt]
-
-Columns:
-- Design System File
-- Design Size Value (e.g., `Large`, `Med`)
-- Codebase Enum Value (e.g., `PopChipStackSize.Large`)
-- Vertical Padding (dp)
-- Horizontal Padding (dp)
-- Min Height (dp)
-- Codebase File Name
-- Notes
-- Code Pattern
-
-Include mappings for:
-- `Size=Large` → `PopChipStackSize.Large` — `16dp` vertical padding in stack; individual chip min height `28dp` via `PopSpacing.Spacing28`
-- `Size=Med` → `PopChipStackSize.Med` — `12dp` vertical padding in stack; individual chip min height `28dp`
-
-Note: `PopChip` itself has no `size` parameter — chip size is a property of `PopChipStack` via `PopChipStackSize`. When placing a standalone `PopChip`, size is controlled by the chip's internal spacing tokens (`horizontalPadding = PopSpacing.Spacing10`, `verticalPadding = PopSpacing.Spacing6`, `minHeight = PopSpacing.Spacing28`) which are not overridable through config. Size selection via `PopChipStackSize` only takes effect inside `PopChipStack`.
-
----
 
 ## C: Chip Stack Property Mapping Table
 
@@ -100,28 +29,11 @@ Note: `PopChip` itself has no `size` parameter — chip size is a property of `P
 Map every `Chip - Stack` design property to its `PopChipStack` parameter.
 
 Columns:
-- Design System File
+- Design System File (molecules.md)
 - Design Property (e.g., `Count`, `Size`, `L-overflow`, `R-overflow`, `Divider`)
-- Property Type (Variant / Boolean)
-- Codebase Parameter (e.g., `chips: List<PopChipConfig>`, `size`, `showLeftOverflow`)
-- Default Value
-- Codebase File Name
-- Notes
+- Codebase Enum Value (e.g., ` ` ,  `PopChipStackSize.Large` , `showLeftOverflow: Boolean = false` , `showRightOverflow: Boolean = false` , `showDivider: Boolean = true`)
+- Codebase File Name (`PopChipStack.kt`)
 - Code Pattern
-
-Include mappings for:
-- `Count=2/3/4/5` → `chips = listOf(...)` with the corresponding number of `PopChipConfig` items — `PopChipStack` accepts a `List<PopChipConfig>` and renders each chip in sequence
-- `Count=Plenty` → `chips = listOf(...)` with a dynamic/unknown-length list — stack is horizontally scrollable by default; use with `showRightOverflow = true` to indicate more chips off-screen
-- `Size=Large` → `size = PopChipStackSize.Large` — `16dp` vertical padding around chips
-- `Size=Med` → `size = PopChipStackSize.Med` — `12dp` vertical padding around chips
-- `L-overflow=True` → `showLeftOverflow = true` — renders a `72dp` wide left gradient overlay (`SurfaceColor.Primary` → transparent) to indicate off-screen chips to the left
-- `L-overflow=False` → `showLeftOverflow = false` (default)
-- `R-overflow=True` → `showRightOverflow = true` — renders a `72dp` wide right gradient overlay (transparent → `SurfaceColor.Primary`) to indicate off-screen chips to the right
-- `R-overflow=False` → `showRightOverflow = false` (default)
-- `Divider=True` → `showDivider = true` (default) — renders a `PopDivider(Horizontal, Solid)` below the chip row
-- `Divider=False` → `showDivider = false` — no divider below chip row
-
----
 
 ##### F. Chip Stack Selection Mode Mapping [molecules.md → PopChipStack.kt]
 
@@ -138,88 +50,6 @@ Include mappings for:
 - Multi-select (e.g., multiple filters active simultaneously) → `singleSelect = false` (default) — each chip toggles independently
 - Selection callback → `onChipSelected: ((index: Int, chipConfig: PopChipConfig) -> Unit)?` — called after each tap with the updated chip config and its index in the list
 
----
-
-## D: Colour & Token Mapping Table
-
-##### G. Chip Colour Token Mapping [molecules.md → PopChip.kt]
-
-Map all colour tokens used by `PopChip` to their design system equivalents.
-
-Columns:
-- Design State / Context
-- Codebase Token
-- Resolved Colour / Description
-- Codebase File
-- Notes
-
-Include:
-- Background — enabled → `SurfaceColor.Secondary`
-- Background — disabled → `SurfaceColor.SecondaryDisabled`
-- Label text — enabled → `TextColor.Primary`
-- Label text — disabled → `TextColor.Disabled`
-- Leading / trailing icon — enabled → `IconColor.Primary`
-- Leading / trailing icon — disabled → `IconColor.Disabled`
-- Active border — active + enabled → `BorderColor.PrimaryInvert` (animated with `PopStroke.Default` width and 1000ms dissolve)
-- Active border — inactive or disabled → `Color.Transparent` (border width animates to `0.dp`)
-- Chip gap (between chips in stack) → `PopSpacing.Spacing8` (8dp)
-- Chip horizontal padding → `PopSpacing.Spacing10` (10dp)
-- Chip vertical padding → `PopSpacing.Spacing6` (6dp)
-- Icon size → `IconSize.Small` = 16dp (`PopIcons.sizeSmall`)
-
----
-
-## E: Full Variant Mapping Tables
-
-##### H. Chip Unit — All Variants [molecules.md → PopChip.kt]
-
-Map every named chip variant to its complete `PopChip(config = PopChipConfig(...))` call.
-
-Columns:
-- Design Variant Name (e.g., `State=Toggle, Is active=False, Is disabled=False, L-Icon=False`)
-- `variant`
-- `mode`
-- `isActive`
-- `enabled`
-- `leadingIcon`
-- Full Code Pattern
-
-Include representative variants:
-1. State=Toggle, Is active=False, Is disabled=False, L-Icon=False — default chip
-2. State=Toggle, Is active=True, Is disabled=False, L-Icon=False — selected filter chip
-3. State=Toggle, Is active=False, Is disabled=True, L-Icon=False — disabled chip
-4. State=Toggle, Is active=False, Is disabled=False, L-Icon=True — chip with leading icon
-5. State=Toggle, Is active=True, Is disabled=False, L-Icon=True — selected chip with leading icon
-6. State=Cross, Is active=True, Is disabled=False — applied filter with dismiss icon (active)
-7. State=Cross, Is active=False, Is disabled=False — cross chip inactive (no border, close icon visible but chip not selected)
-8. State=Dropdown, Is active=False, Is disabled=False — dropdown chip (Static mode, opens picker)
-9. State=Dropdown, Is active=True, Is disabled=False — dropdown chip (Toggleable mode, selected + chevron)
-10. State=Switch, Is active=False — ⚠️ no `PopChipVariant.Switch`; document gap + workaround
-
----
-
-##### I. Chip Stack — All Variants [molecules.md → PopChipStack.kt]
-
-Map every named stack variant to its complete `PopChipStack(...)` call.
-
-Columns:
-- Design Variant Name (e.g., `Count=3, Size=Large, Divider=True, L-overflow=False, R-overflow=False`)
-- `chips` (list size / description)
-- `size`
-- `showDivider`
-- `showLeftOverflow`
-- `showRightOverflow`
-- `singleSelect`
-- Full Code Pattern
-
-Include representative variants:
-1. Count=2, Size=Large, Divider=True — default stack, 2 chips
-2. Count=3, Size=Large, Divider=True — 3-chip filter row
-3. Count=5, Size=Med, Divider=False — compact stack, no divider
-4. Count=Plenty, Size=Large, Divider=True, R-overflow=True — scrollable stack with right fade
-5. Count=Plenty, Size=Large, Divider=True, L-overflow=True, R-overflow=True — scrolled mid-position, both overflow fades
-6. Count=3, Size=Large, Divider=True, singleSelect=True — single-select filter bar (sort chips)
-7. Count=4, Size=Large, Divider=True, singleSelect=False — multi-select filter bar (category chips)
 
 ---
 
